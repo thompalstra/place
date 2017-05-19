@@ -1,0 +1,282 @@
+
+
+.blog-content[display-type="preview"] div[contenteditable="true"]{
+    display: inline-block;
+    margin-top: 10px;
+}
+.blog-content[display-type="preview"] textarea{
+    display: none;
+}
+.blog-content[display-type="code"] textarea{
+    display: block;
+}
+.blog-content[display-type="code"] div[contenteditable="true"]{
+    display: none;
+}
+
+.blog-content[display-type="code"] .toggle-code{
+    background-color: #006bb3;
+    color: white;
+}
+.blog-content[display-type="preview"] .toggle-code{
+    background-color: inherit;
+    color: inherit;
+}
+
+.blog-content textarea{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    overflow: auto;
+    resize: none;
+}
+
+.blog-content div[contenteditable="true"]{
+    display: inline-block;
+    width: 100%;
+    float: left;
+}
+
+.blog-content{
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+}
+.blog-content.active{
+    z-index: 1;
+    -webkit-box-shadow: 0px 2px 10px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 10px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 10px 2px rgba(0,0,0,0.75);
+    transition: box-shadow .2s ease-in-out;
+}
+.content-preview{
+    padding: 10px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.content-preview.code{
+    white-space: pre-wrap;
+}
+
+.content-preview img{
+    max-width: 100%;
+}
+
+.blog-content .toolbar-toggle{
+    content: "\E5D4";
+    font-family: "Material Icons";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ddd;
+}
+
+.fixed-button-row{
+    background-color: #333;
+    padding: 0 10px 10px 10px;
+    box-sizing: border-box;
+}
+
+.blog-content-more.open{
+    background-color: #006bb3;
+    color: white;
+}
+
+.blog-content-more.open ~ select,
+.blog-content-more.open ~input,
+.blog-content-more.open ~.fileinput{
+    display: inherit;
+    float: left;
+    margin-right: 10px;
+}
+.blog-content-more ~ select,
+.blog-content-more ~ input,
+.blog-content-more ~ .fileinput{
+    display: none;
+}
+.file.file-container > h4{
+    height: 50px;
+    margin: 0;
+    line-height: 50px;
+}
+.file.file-container > .inner{
+    background-color: #eee;
+    padding: 10px 0;
+    height: calc(100% - 200px);
+    width: 100%;
+    display: inline-block;
+}
+.file.file-container > .inner > .item{
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin: 0 10px 10px 0;
+    opacity: .5;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid transparent;
+}
+.file.file-container > .inner > .item[selected="true"]{
+    /*border: 1px solid #ddd;*/
+    opacity: 1;
+}
+
+.file.file-container > .inner > .item[selected="true"] .name{
+    /*border: 1px solid #ddd;*/
+}
+
+.file.file-container > .inner > .item[new="true"] input{
+    display: block !important;
+}
+
+.file.file-container > .inner > .item input{
+    display: none;
+    width: 100%;
+    font-size: 11px;
+    border: 0;
+    margin-top: 2px;
+    text-align: center;
+    padding: 0;
+    background-color: white;
+    outline: 0;
+    border: 1px solid #0C6BD4;
+}
+
+.file.file-container > .inner > .item:hover{
+    opacity: 1;
+}
+.file.file-container > .inner > .item:before{
+    font-family: "Material Icons";
+    width: 80px;
+    text-align: center;
+    height: 60px;
+    display: inline-block;
+    font-size: 60px;
+    z-index: 20;
+    position: relative;
+}
+.file.file-container > .inner > .item.dir:before{
+    content: "\E2C7";
+}
+.file.file-container > .inner > .item.file:before{
+    content: "\E24D";
+}
+.file.file-container > .inner > .item.return:before{
+    content: "\E5D9";
+}
+
+.file.file-container > .inner > .item[new="true"] input{
+    width: 100%;
+}
+
+.file.file-container > .inner > .item > .name{
+    position: absolute;
+    font-size: 11px;
+    height: 15px;
+    text-align: center;
+    display: inline-block;
+    width: 100%;
+    word-wrap: break-word;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    padding-top: 60px;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    right: 0;
+}
+.file.file-container > .inner > .item[selected="true"]::before,
+.file.file-container > .inner > .item[selected="true"] > .name{
+    color: white;
+}
+
+
+.file.file-container > .inner > .item[selected="true"] > .name{
+    height: auto;
+    padding-bottom: 5px;
+    background-color: rgba(12, 107, 212, .4);
+}
+
+.file.file-container > .toolbar{
+    border-bottom: 1px solid #cccccc;
+}
+.file.file-container > .toolbar > ul{
+    display: inline-block;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.file.file-container > .toolbar li .icon{
+    float: left;
+}
+.file.file-container > .toolbar li{
+    position: relative;
+    transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out;
+    padding: 0 10px;
+}
+.file.file-container > .toolbar li > ul{
+    position:absolute;
+    top: 100%;
+    left: 0;
+    z-index: 200;
+    background-color: white;
+    min-width: 150px;
+    list-style: none;
+    padding: 0;
+    margin-left: 0;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+.toolbar li:hover{
+    background-color: #f3f3f3;
+}
+.file.file-container > .toolbar > ul > li{
+    display: inline-block;
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+    padding: 0 10px;
+    cursor: pointer;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.file.file-container > .toolbar .rename > span{
+    float: right;
+}
+.file.file-container > .toolbar .rename > span input{
+    background-color: #cccccc;
+    height: 20px;
+    margin: 10px;
+    border: 0;
+}
+.toolbar .view{
+    opacity: .3;
+}
+.toolbar[item-selected="true"][type-selected="file"] .view{
+    opacity: 1;
+}
+
+.toolbar[item-selected="false"] .rename,
+.toolbar[item-selected="false"] .remove{
+    opacity: .3;
+}
+
+
+/*.blog-content .toolbar[toggled="false"]{
+    display: none;
+}
+.blog-content .toolbar[toggled="true"]{
+    display: block;
+}*/

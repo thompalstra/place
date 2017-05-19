@@ -1,0 +1,5 @@
+<?php
+return [
+    'defaultEnvironment' => 'front',
+];
+?>
