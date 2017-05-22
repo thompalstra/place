@@ -86,6 +86,14 @@ f(document).on('input', '.radioco-volume', function(e){
     }, 2000);
     f('.radioplayer > .volume-indicator').attr('out', 'false');
 
+    for(var j = 0; j < document.styleSheets[1].rules.length; j++) {
+        var rule = document.styleSheets[1].rules[j];
+        console.log(rule);
+        if(rule.cssText.match(".radioco-information > .radioco-volume::-webkit-slider-thumb")) {
+            rule.style.backgroundColor="red";
+        }
+    }
+
 });
 
 var player = $('.radioplayer').radiocoPlayer();

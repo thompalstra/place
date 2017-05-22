@@ -232,9 +232,9 @@ class ChatClient{
         $session = \Frag::$app->session;
         $out = "";
         $out .= "<section class='chat chat-container'>";
-        $out .= "<div class='toolbar'>";
-        $out .= "<button class='chat-disconnect'>logout</button>";
-        $out .= "</div>";
+        //$out .= "<div class='toolbar'>";
+        // $out .= "<button class='chat-disconnect'><i class='material-icons'>exit_to_app</i></button>";
+        //$out .= "</div>";
 
         return $out;
     }
@@ -316,7 +316,7 @@ class ChatClient{
             $d = date('D', $time) . ' ' . date('d', $time) . ' ' . date('M', $time) . ' ' . date('Y', $time);
             $out[]  = "<div class='chat outer'><div class='date line'>$d</div></div>";
             if($offset == self::MAX_HISTORY){
-                $out[] = "<div class='chat outer'><div class='date line'>".self::getHistoryMessage()."</div></div>";
+                $out[] = "<div class='chat outer'><div class='date line end'>".self::getHistoryMessage()."</div></div>";
             }
             $out = array_reverse($out);
             $out = implode($out, ' ');
@@ -327,7 +327,7 @@ class ChatClient{
             $out = '';
             $out .= "<div class='chat outer'><div class='date line'>$d</div></div>";
             if($offset == self::MAX_HISTORY){
-                $out .= "<div class='chat outer'><div class='date line'>".self::getHistoryMessage()."</div></div>";
+                $out .= "<div class='chat outer'><div class='date line end'>".self::getHistoryMessage()."</div></div>";
             }
             return $out;
         }
@@ -410,6 +410,7 @@ class ChatClient{
         $out = "<div class='connect-container'>";
         $out .= "<div class='chat-warning'>This is a message</div>";
         $out .= "<input type='text' placeholder='message' class='chat-message pull-left'>";
+        $out .= "<button class='chat-disconnect pull-right'><i class='material-icons'>exit_to_app</i></button>";
         $out .= "<button class='chat-send pull-right'><i class='material-icons'>send</i></button>";
         $out .= "</div>";
         return $out;
@@ -488,12 +489,6 @@ function ChatClient(){
 
     scrollEvent = function(){
         chat.oldScroll = this.scrollTop;
-
-        if(this.scrollTop == 0){
-            f('.history.load-more').show();
-        } else {
-            f('.history.load-more').hide();
-        }
     }
 
     if(this.messageContainer.exists()){
@@ -515,7 +510,8 @@ function ChatClient(){
             },
             done: function(response){
                 if(elem.attr('offset') >= chat.maxHistoryOffset){
-                    elem.style('display', 'none');
+                    //elem.style('display', 'none');
+                    elem[0].remove();
                 } else {
                     elem.attr('offset', parseInt(offset) + 1);
                 }
@@ -601,6 +597,14 @@ function ChatClient(){
             e.preventDefault();
             send = f(this).siblings('.chat-send');
             send.trigger('click');
+        }
+    });
+
+    f(document).on('keydown', '.chat-container .chat-name', function(e){
+        if(e.keyCode == 13){
+            e.preventDefault();
+            connect = f(this).siblings('.chat-connect');
+            connect.trigger('click');
         }
     });
 
